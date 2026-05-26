@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+
+.slick-slide div {
+  outline: none;
+}
+.slick-dots li button {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+}
