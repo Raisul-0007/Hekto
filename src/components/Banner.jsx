@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ban from "../assets/ban.png"
 
 import SliderImport from "react-slick";
+import Container from './Container';
 
 const Slider = SliderImport.default;
 const Banner = () => {
@@ -14,13 +15,14 @@ const Banner = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
   }
   
   return (
     <div>
+      <Container>
         <div className="slider-container">
       <Slider {...settings}>
-        {console.log(Slider)}
       <div className="">
         <img className='w-full' src={ban} alt="Banner" />
       </div>
@@ -35,6 +37,7 @@ const Banner = () => {
       </div>
       </Slider>
       </div>
+      </Container>
     </div>
   )
 }
