@@ -6,6 +6,16 @@
 }
 .slick-dots li button {
     position: absolute;
-    top: -50px;
-    left: 50%;
+    bottom: 30px;
+    left: 50%;    
+    z-index: 999;
+  }
+
+  .slick-dots li:hover button:before {
+  color: #ff6aad !important;
 }
+
+.slick-dots li.slick-active button:before {
+  color: #ff0073 !important;
+}
+

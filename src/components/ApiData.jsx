@@ -1,6 +1,9 @@
-import React from 'react'
+import { createContext, useEffect, useState } from "react";
 
-const ApiData = () => {
+
+const Data = createContext();
+
+const ApiData = ({children}) => {
     let [info, setInfo] = useState([])
     let [loading, setLoading] = useState(true);
 
@@ -27,4 +30,4 @@ const ApiData = () => {
   )
 }
 
-export default {ApiData, Data}
+export {ApiData, Data}
