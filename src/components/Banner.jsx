@@ -16,13 +16,16 @@ const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    customPaging: i => (
+       <div className="banner-dot" />
+    )
   }
   
   return (
     <div>
       <Container>
         <div className="slider-container">
-      <Slider {...settings}>
+      <Slider className="banner-slider" {...settings}>
       <div className="">
         <img className='w-full' src={ban} alt="Banner" />
       </div>

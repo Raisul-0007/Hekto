@@ -1,21 +1,56 @@
 @import "tailwindcss";
 
-
+/* banner slider dots */
 .slick-slide div {
   outline: none;
 }
+
+.banner-slider .slick-dots {
+  bottom: 20px;
+}
+
+.banner-slider .banner-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  transition: 0.3s;
+}
+
+.banner-slider .slick-dots .slick-active .banner-dot {
+  background: #ff0073;
+}
+
+.banner-slider .banner-dot:hover {
+  background: #ff6aad;
+}
+
+
+
+/* featured slider */
+.slick-dots li {
+  width: auto !important;
+  margin: 0 5px !important;
+}
+
 .slick-dots li button {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;    
-    z-index: 999;
-  }
-
-  .slick-dots li:hover button:before {
-  color: #ff6aad !important;
+  padding: 0 !important;
 }
 
-.slick-dots li.slick-active button:before {
-  color: #ff0073 !important;
+.slick-dots li button:before {
+  display: none !important;
 }
 
+.custom-dot {
+  width: 30px;
+  height: 4px;
+  background: #ddd;
+  transition: all 0.3s ease;
+}
+
+.slick-dots li.slick-active .custom-dot {
+  background: #ff0073;
+}
+.custom-dot:hover {
+  background: #ff6aad;
+}

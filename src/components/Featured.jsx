@@ -3,7 +3,6 @@ import Container from './Container'
 import SliderImport from "react-slick";
 import ban from "../assets/ban.png"
 import {Data} from './ApiData'
-
 const Slider = SliderImport.default;
 
 const Featured = () => {
@@ -18,14 +17,17 @@ const Featured = () => {
     slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 2000,
+    customPaging: i => (
+       <div className="custom-dot" />
+    )
   }
   return (
-    <div className="py-7.5">
+    <div className="py-12.5">
         <Container>
             <div className="">
                 <h2 className="text-4xl text-center">Featured Products</h2>
             </div>
-                <Slider className="py-10" {...settings}>
+                <Slider className="  py-10" {...settings}>
                     {info.slice(70,90).map((item) => (
                       <div className="w-1/4 px-3 group">
                         <div className="bg-white border border-[#f1efef] rounded-2xl">
@@ -35,12 +37,12 @@ const Featured = () => {
                         </div>
                         <div className="bg-white py-5 px-3 group-hover:bg-[#2f1ac4] ease-in-out duration-400 rounded-b-2xl">
                             <div className="flex items-center justify-between ">
-                                <h4 className="text-lg font-semibold text-center text-[#ff0073] group-hover:text-white ease-in-out duration-300">{item.title.slice(0, 15)}...</h4>
-                            <p className="text-black text-center group-hover:text-[#d6d6d6] ease-in-out duration-300 text-lg">${item.discountPercentage? `${(item.price -(item.price * item.discountPercentage) / 100).toFixed(2)}` : ''}</p>
+                                <h4 className="text-lg font-semibold text-center text-[#ff0073] group-hover:text-white ease-in-out duration-400">{item.title.slice(0, 15)}...</h4>
+                            <p className="text-black text-center group-hover:text-white group-hover:font-semibold ease-in-out duration-400 text-lg">${item.discountPercentage? `${(item.price -(item.price * item.discountPercentage) / 100).toFixed(2)}` : ''}</p>
                             </div>
                             <div className="flex justify-between">
-                                <h4 className="text-gray-600 group-hover:text-[#d6d6d6]">{item.category}</h4>
-                                <p className="text-[#a3a0a0] text-center line-through group-hover:text-[#d6d6d6] ease-in-out duration-300">${item.price.toFixed(2)}</p>
+                                <h4 className="text-gray-600 group-hover:text-white ease-in-out duration-400">{item.category}</h4>
+                                <p className="text-[#a3a0a0] text-center line-through group-hover:text-white ease-in-out duration-400">${item.price.toFixed(2)}</p>
                             </div>
                         </div>
                       </div>
