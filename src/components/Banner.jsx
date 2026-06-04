@@ -23,7 +23,6 @@ const Banner = () => {
   
   return (
     <div>
-      <Container>
         <div className="slider-container">
       <Slider className="banner-slider" {...settings}>
       <div className="">
@@ -40,7 +39,6 @@ const Banner = () => {
       </div>
       </Slider>
       </div>
-      </Container>
     </div>
   )
 }

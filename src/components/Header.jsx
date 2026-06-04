@@ -7,8 +7,7 @@ import Container from './Container';
 
 const Header = () => {
   return (
-    <div>
-      <Container className="bg-[#5f3ed8] py-2 flex justify-between items-center text-white">
+    <div className="bg-[#5f3ed8] py-2 flex justify-between items-center text-white">
         <div className=" flex justify-between items-center gap-5 text-sm">
         <div className="flex items-center gap-2">
           <CiMail />
@@ -31,7 +30,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-      </Container>
       </div>
   )
 }
