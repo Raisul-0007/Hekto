@@ -4,6 +4,7 @@ import Banner from './components/Banner'
 import Featured from './components/Featured'
 import Leatest from './components/Leatest'
 import Unique from './components/Unique'
+import Footer from './components/Footer'
 const App = () => {
   return (
     <div>
@@ -12,6 +13,7 @@ const App = () => {
       <Featured/>
       <Leatest/>
       <Unique/>
+      <Footer/>
     </div>
   )
 }
