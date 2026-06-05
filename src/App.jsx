@@ -1,19 +1,25 @@
 import React from 'react'
-import Header from './components/Header'
-import Banner from './components/Banner'
-import Featured from './components/Featured'
-import Leatest from './components/Leatest'
-import Unique from './components/Unique'
-import Footer from './components/Footer'
+import Home from './pages/Home '
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
+import Shop from './pages/Shop';
+
 const App = () => {
+  
+  const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home/>,
+  },
+  {
+    path:"/shop",
+    element:<Shop/>
+  }
+]);
+
   return (
     <div>
-      <Header/>
-      <Banner/>
-      <Featured/>
-      <Leatest/>
-      <Unique/>
-      <Footer/>
+      <RouterProvider router={router} />
     </div>
   )
 }
