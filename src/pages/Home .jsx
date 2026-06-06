@@ -6,16 +6,15 @@ import Leatest from './../components/Leatest'
 import Unique from './../components/Unique'
 import Footer from './../components/Footer'
 import Navber from './../components/Navber';
+import Best from '../components/Best';
 const Home  = () => {
   return (
     <div>
-      <Header/>
-      <Navber/>
       <Banner/>
       <Featured/>
       <Leatest/>
       <Unique/>
-      <Footer/>
+      <Best/>
     </div>
   )
 }
