@@ -13,6 +13,9 @@ const Filter = () => {
         setCategory([...new Set(info.map((item)=> item.category))])
     }, [info])
     let [brand, setBrand] = useState([])
+    useEffect(()=>{
+        setBrand([...new Set(info.map((item)=> item.brand))])
+    })
   return (
     <div>                                                                                           
         <div className="">
@@ -32,9 +35,19 @@ const Filter = () => {
             </div>
         </div>
         <div className="">
-            <div className="flex cursor-pointer justify-between items-center py-5 border-b border-[#76767638]">
+            <div onClick={()=>brandSetShow(!brandShow)} className="flex cursor-pointer justify-between items-center py-5 border-b border-[#76767638]">
                 <h3 className="text-xl font-bold">Shop By Brand</h3>
-                    {cate ? <FaSortUp /> : <FaSortDown />}
+                    {brandShow ? <FaSortUp /> : <FaSortDown />}
+            </div>
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${brandShow ? "opacity-100" : "max-h-0 opacity-0"}`}>
+                <ul>
+                    {brand.map((item)=>(
+                        <li className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" key={item}>
+                            <p className="text-[17px] capitalize">{item}</p>
+                            <GoPlus/>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
         <div className=""></div>
