@@ -7,15 +7,36 @@ const Filter = () => {
     let {info} = useContext(Data)
     let [cate, cateShow] = useState(false)
     let [brandShow, brandSetShow] = useState(false)
+    let [priceShow, priceSetShow] = useState(false)
+    let [filterCategory, setFilterCategory] = useState([])
 
     let [category, setCategory] = useState([])
     useEffect(() => {
         setCategory([...new Set(info.map((item)=> item.category))])
     }, [info])
+
     let [brand, setBrand] = useState([])
     useEffect(()=>{
         setBrand([...new Set(info.map((item)=> item.brand))])
     })
+
+    let [price, setPrice] = useState([])
+    useEffect(()=>{
+        setPrice([...new Set(info.map((item)=>item.price))])
+    })
+    
+    let [show, setLow] = useState([])
+    let [high, setHigh] = useState([])
+    let handlePrice = ()=>{
+        setLow(value.low)
+        setHigh(value.high)
+        let priceFilter = info.filter((item)=> item.price > value.low && value.high > item.price)
+        setFilterCategory(priceFilter)
+    }
+
+    let handleAll = ()=>{
+        setFilterCategory("")
+    }
   return (
     <div>                                                                                           
         <div className="">
@@ -39,7 +60,7 @@ const Filter = () => {
                 <h3 className="text-xl font-bold">Shop By Brand</h3>
                     {brandShow ? <FaSortUp /> : <FaSortDown />}
             </div>
-            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${brandShow ? "opacity-100" : "max-h-0 opacity-0"}`}>
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${brandShow ? "opacity-100 transition-all duration-500 ease-in-out" : "max-h-0 opacity-0 "}`}>
                 <ul>
                     {brand.map((item)=>(
                         <li className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" key={item}>
@@ -50,7 +71,40 @@ const Filter = () => {
                 </ul>
             </div>
         </div>
-        <div className=""></div>
+        <div className="">
+            <div onClick={()=>priceSetShow(!priceShow)} className="flex cursor-pointer justify-between items-center py-5 border-b border-[#76767638]">
+                <h3 className="text-xl font-bold">Shop By Price</h3>
+                    {priceShow ? <FaSortUp /> : <FaSortDown />}
+            </div>
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${priceShow ? "opacity-100 transition-all duration-500 ease-in-out" : "max-h-0 opacity-0 "}`}>
+                        <ul>
+                            <li className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" >
+                            <p className="text-[17px] capitalize">All</p>
+                            <GoPlus/>
+                        </li>
+                            <li onClick={()=> handlePrice({low: 0, high: 20})} className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" >
+                            <p className="text-[17px] capitalize">$0-$20</p>
+                            <GoPlus/>
+                        </li>
+                        <li onClick={()=> handlePrice({low: 21, high: 50})} className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" >
+                            <p className="text-[17px] capitalize">$21-$50</p>
+                            <GoPlus/>
+                        </li>
+                        <li onClick={()=> handlePrice({low: 51, high: 100})} className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" >
+                            <p className="text-[17px] capitalize">$50-$100</p>
+                            <GoPlus/>
+                        </li>
+                        <li onClick={()=> handlePrice({low: 101, high: 500})} className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" >
+                            <p className="text-[17px] capitalize">$101-$500</p>
+                            <GoPlus/>
+                        </li>
+                        <li onClick={()=> handlePrice({low: 501, high: 1000})} className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" >
+                            <p className="text-[17px] capitalize">$501-$1000</p>
+                            <GoPlus/>
+                        </li>
+                        </ul>
+            </div>
+        </div>
     </div>
   )
 }
