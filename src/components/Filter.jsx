@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { Data } from './ApiData';
+import Products from './Products';
+import { FaListUl } from 'react-icons/fa';
+import { FaTableCellsLarge } from 'react-icons/fa6';
 
-const Filter = () => {
+const Filter = ({filterCategory}) => {
    let {info} = useContext(Data)
 
    let [perPage, setPerPage] = useState(6)
@@ -31,9 +34,33 @@ const Filter = () => {
         setPerPage(e.target.value)
     }
 
+    let [active, setActive] = useState("")
+    let handleActive = ()=>{
+        setActive("active")
+    }
   return (
     <div>                                                                                           
-       
+       <div className="flex justify-between">
+        <div  className="flex gap-2">
+        <div onClick={()=>setActive("")} className={`${active = "active" ? "border border-[#fb2e86] p-1 text-white bg-[#fb2e86] ease-in-out transition-all duration-300" : "p-1 border border-[#fb2e86] text-[#fb2e86] hover:ext-white hover:border-[#fb2e86] hover:bg-[#fb2e86] ease-in-out transition-all duration-300"}`}>
+            <FaTableCellsLarge/>
+        </div>
+        <div onClick={handleActive} className={`${active = "active" ? "hover:bg-[#fb2e86] hover:text-white p-1 border border-[#fb2e86] text-[#fb2e86] hover:border-[#fb2e86] ease-in-out transition-all duration-300" : "border border-[#fb2e86] p-1 text-white bg-[#fb2e86] ease-in-out transition-all duration-300"}`}>
+            <FaListUl/>
+        </div>
+       </div>
+       <div className="flex gap-5">
+        <h4>Short by:</h4>
+        <select onChange={handlePageNumber} className='cursor-pointer border pl-4'>
+            <option value="9">9</option>
+            <option value="12">12</option>
+            <option value="15">15</option>
+        </select>
+       </div>
+       </div>
+       <div className="">
+        <Products filterCategory={filterCategory} active={active} allPage={allPage} />
+       </div>
     </div>
   )
 }
