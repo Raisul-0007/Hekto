@@ -1,11 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Container from './../components/Container';
 import Filter from '../components/Filter';
-import Products from './../components/Products';
 import { FaSortDown, FaSortUp } from "react-icons/fa";
 import { Data } from '../components/ApiData';
 import { GoPlus } from "react-icons/go";
-import Filter from './../components/Filter';
 
 const Shop = () => {
    let {info} = useContext(Data)
