@@ -20,16 +20,11 @@ const Shop = () => {
       let [brand, setBrand] = useState([])
       useEffect(()=>{
           setBrand([...new Set(info.map((item)=> item.brand))])
-      })
-  
-      let [price, setPrice] = useState([])
-      useEffect(()=>{
-          setPrice([...new Set(info.map((item)=>item.price))])
-      })
+      }, [info])
       
-      let [show, setLow] = useState([])
+      let [low, setLow] = useState([])
       let [high, setHigh] = useState([])
-      let handlePrice = ()=>{
+      let handlePrice = (value)=>{
           setLow(value.low)
           setHigh(value.high)
           let priceFilter = info.filter((item)=> item.price > value.low && value.high > item.price)
@@ -38,6 +33,14 @@ const Shop = () => {
   
       let handleAll = ()=>{
           setFilterCategory("")
+      }
+      let handleCategory = (cItem)=>{
+        let filterItem = info.filter((item)=>item.category == cItem)
+        setFilterCategory(filterItem)
+      }
+      let handleBrand = (bItem)=>{
+        let filterItem = info.filter((item)=> item.brand === bItem)
+        setFilterCategory(filterItem)
       }
   return (
     <div>
@@ -56,7 +59,7 @@ const Shop = () => {
                     <p className="text-[17px] capitalize">All</p>
                 </li>
             {category.map((item)=>(
-            <li className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" key={item}>
+            <li onClick={()=> handleCategory(item)} className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" key={item}>
                 <p className="text-[17px] capitalize">{item}</p>
                 <GoPlus/>
             </li>
@@ -75,7 +78,7 @@ const Shop = () => {
                     <p className="text-[17px] capitalize">All</p>
                 </li>
                     {brand.map((item)=>(
-                        <li className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" key={item}>
+                        <li onClick={()=> handleBrand(item)} className="flex justify-between cursor-pointer items-center border-b py-2 border-[#76767638]" key={item}>
                             <p className="text-[17px] capitalize">{item}</p>
                             <GoPlus/>
                         </li>
