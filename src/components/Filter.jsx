@@ -6,6 +6,8 @@ import { FaTableCellsLarge } from 'react-icons/fa6';
 
 const Filter = ({filterCategory}) => {
 
+    console.log(filterCategory);
+    
    let [perPage, setPerPage] = useState(9)
    let [currentPage, setCurrentPage] = useState(1)
    let everyPage = perPage * currentPage

@@ -42,6 +42,9 @@ const Shop = () => {
         let filterItem = info.filter((item)=> item.brand === bItem)
         setFilterCategory(filterItem)
       }
+      useEffect(() => {
+  setFilterCategory(info)
+}, [info])
   return (
     <div>
       <Container>
