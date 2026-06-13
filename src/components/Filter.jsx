@@ -3,6 +3,7 @@ import { Data } from './ApiData';
 import Products from './Products';
 import { FaListUl } from 'react-icons/fa';
 import { FaTableCellsLarge } from 'react-icons/fa6';
+import Pagination from './Pagination';
 
 const Filter = ({filterCategory}) => {
 
@@ -66,6 +67,9 @@ const Filter = ({filterCategory}) => {
        </div>
        <div className="">
         <Products filterCategory={filterCategory}  active={active} allPage={allPage} />
+       </div>
+       <div className="">
+        <Pagination pageNumber={pageNumber} paginate={paginate} next={next} prev={prev} currentPage={currentPage} filterCategory={filterCategory} allPage={allPage}/>
        </div>
     </div>
   )

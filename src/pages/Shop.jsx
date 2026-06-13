@@ -32,7 +32,7 @@ const Shop = () => {
       }
   
       let handleAll = ()=>{
-          setFilterCategory("")
+          setFilterCategory(info)
       }
       let handleCategory = (cItem)=>{
         let filterItem = info.filter((item)=>item.category == cItem)

@@ -8,12 +8,12 @@ const Products = ({ filterCategory, active, allPage }) => {
       {allPage.length > 0 ? (
         <div className="">
           {active === "" ? (
-            <div className="flex flex-wrap justify-between">
+            <div className="flex flex-wrap ">
               {allPage.map((item) => (
                 <div key={item.id} className="w-1/3 p-5">
                   <Link to="">
                     <div className="group">
-                      <div className=" bg-white border border-[#f1efef] transition-all duration-300 group-hover:scale-[1.02] rounded-t-2xl">
+                      <div className=" bg-white border border-[#f1efef] transition-all duration-300 group-hover:scale-[1.02] rounded-2xl">
                         <div className="w-full relative">
                           <img
                             className="bg-[#f6f7fb] group-hover:bg-[#e9e9e9] w-full rounded-2xl"
@@ -68,7 +68,7 @@ const Products = ({ filterCategory, active, allPage }) => {
                             {item.discountPercentage.toFixed(0)}% OFF
                           </p>
                         </div>
-                        <div className="w-2/4">
+                        <div className="w-2/4 py-4">
                           <h3 className="text-4xl group-hover:text-white ease-in-out duration-400">
                             {item.title}
                           </h3>
@@ -76,15 +76,16 @@ const Products = ({ filterCategory, active, allPage }) => {
                             {item.category}
                           </p>
                         </div>
-                        <div className="w-1/4">
-                          <p className="text-[#a3a0a0] text-center line-through group-hover:text-white ease-in-out duration-400">
-                            ${item.price.toFixed(2)}
-                          </p>
-                          <p className="text-black text-center group-hover:text-white group-hover:font-semibold ease-in-out duration-400 text-lg">
+                        <div className="w-1/4 py-4">
+
+                          <p className="text-black text-2xl text-center group-hover:text-white group-hover:font-semibold ease-in-out duration-400">
                             $
                             {item.discountPercentage
                               ? `${(item.price - (item.price * item.discountPercentage) / 100).toFixed(2)}`
                               : ""}
+                          </p>
+                           <p className="text-[#a3a0a0] text-center line-through group-hover:text-white ease-in-out duration-400">
+                            ${item.price.toFixed(2)}
                           </p>
                         </div>
                       </div>
