@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Shop from './pages/Shop';
 import Layout from './components/Layout';
+import ProductDetails from './pages/ProductDetails';
 
 const App = () => {
   
@@ -18,7 +19,10 @@ const App = () => {
   },
   {
     path:"/shop",
-    element:<Shop/>
+    element:<Shop/>,
+  },{
+    path:"/shop/:id",
+    element:<ProductDetails/>,
   }
 ]}
   ])
