@@ -11,7 +11,7 @@ const Products = ({ filterCategory, active, allPage }) => {
             <div className="flex flex-wrap ">
               {allPage.map((item) => (
                 <div key={item.id} className="w-1/3 p-5">
-                  <Link to="/shop/:id">
+                  <Link to={`/shop/${item.id}`}>
                     <div className="group">
                       <div className=" bg-white border border-[#f1efef] transition-all duration-300 group-hover:scale-[1.02] rounded-2xl">
                         <div className="w-full relative">
@@ -55,7 +55,7 @@ const Products = ({ filterCategory, active, allPage }) => {
             <div className="">
               {allPage.map((item) => (
                 <div key={item.id} className="py-2">
-                  <Link to="/shop/:id">
+                  <Link to={`/shop/${item.id}`}>
                     <div className=" group ">
                       <div className="flex justify-between gap-3 group-hover:bg-[#2f1ac4] bg-white border border-[#f1efef] transition-all duration-300 group-hover:scale-[1.02] rounded-2xl">
                         <div className="w-1/4 relative">
