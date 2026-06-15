@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from 'react-icons/io'
 
 const ProductDetails = () => {
     let {id} = useParams()
@@ -16,6 +17,16 @@ const ProductDetails = () => {
     useEffect(()=>{
         singleProduct()
     },[])
+
+    let clientRating = Array.from({length: 5}, (_ , i)=>{
+      if(product.rating >= i + 1){
+        return <IoIosStar/>
+      }else if(product.rating >= i + 0.5){
+        return <IoIosStarHalf/>
+      }else{
+        return <IoIosStarOutline/>
+      }
+    })
   return (
     <div className='bg-[#eeeffb]'>
       <Container>
@@ -29,7 +40,8 @@ const ProductDetails = () => {
           </div>
           <div className="w-2/3">
             <h3 className='font-semibold text-4xl py-5'>{product.title}</h3>
-            <div className=""></div>
+            <div className="text-yellow-400 flex gap-0.5 py-2 text-lg">
+              {clientRating}            </div>
             <div className="flex gap-3 items-center">
               <h4 className='text-[#2f1ac4] text-xl'>${product.discountPercentage
                   ? `${(product.price - (product.price * product.discountPercentage) / 100).toFixed(2)}`
