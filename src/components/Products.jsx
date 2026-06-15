@@ -16,7 +16,7 @@ const Products = ({ filterCategory, active, allPage }) => {
                       <div className=" bg-white border border-[#f1efef] transition-all duration-300 group-hover:scale-[1.02] rounded-2xl">
                         <div className="w-full relative">
                           <img
-                            className="bg-[#f6f7fb] group-hover:bg-[#e9e9e9] w-full rounded-2xl"
+                            className="bg-[#f6f7fb] group-hover:bg-[#e9e9e9] w-full rounded-t-2xl"
                             src={item.thumbnail}
                             alt={item.id}
                           />

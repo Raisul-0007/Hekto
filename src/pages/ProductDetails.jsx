@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Container from '../components/Container'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from 'react-icons/io'
+import Best from "../components/Best.jsx"
+import SliderImport from "react-slick";
+import {Data} from "../components/ApiData.jsx"
 
+
+const Slider = SliderImport.default;
 const ProductDetails = () => {
+  let {info} = useContext(Data)
     let {id} = useParams()
     let [product, setProduct] = useState([])
     let singleProduct = ()=>{
@@ -16,7 +24,7 @@ const ProductDetails = () => {
     
     useEffect(()=>{
         singleProduct()
-    },[])
+    },[id])
 
     let clientRating = Array.from({length: 5}, (_ , i)=>{
       if(product.rating >= i + 1){
@@ -27,6 +35,18 @@ const ProductDetails = () => {
         return <IoIosStarOutline/>
       }
     })
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 2,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2000
+      }
+      
   return (
     <div className='bg-[#eeeffb]'>
       <Container>
@@ -34,9 +54,9 @@ const ProductDetails = () => {
           <h2 className='font-bold text-3xl'>ProductDetails</h2>
         </div>
         <div className="py-20">
-          <div className="bg-white flex gap-10 p-20 rounded-2xl">
+          <div className="bg-white flex gap-10 p-20 rounded-2xl shadow-2xl">
           <div className="w-1/3">
-            <img className='w-full border border-[#f0f0f0]' src={product.thumbnail} alt={product.id}/>
+            <img className='w-full rounded-2xl border border-[#f0f0f0]' src={product.thumbnail} alt={product.id}/>
           </div>
           <div className="w-2/3">
             <h3 className='font-semibold text-4xl py-5'>{product.title}</h3>
@@ -62,6 +82,29 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+        </div>
+        <div className="">
+          <div className="">
+                      <h2 className="text-4xl text-center">Best Selling Products</h2>
+                  </div>
+                  <div className="">
+                      <Slider className="py-15" {...settings}>
+                      {info.slice(121, 141 ).map((item)=>(
+                          <Link to={`/shop/${item.id}`} className="w-1/4 px-4 py-5 transition-all duration-300 hover:scale-[1.1]" key={item.id}>
+                              <div className="">
+                                  <img className=" object-cover rounded-full shadow-xl bg-[#f6f7fb] p-5" src={item.thumbnail} alt={item.id} />
+                              </div>
+                              <div className="">
+                                  <h4 className="text-xl font-bold text-[#151875] text-center">{item.title.slice(0, 13)}</h4>
+                                  <div className="flex items-center gap-2 justify-center">
+                                      <p className='text-[#ff0073]'>${(item.price - (item.price * (item.discountPercentage / 100))).toFixed(0)}</p>
+                                      <p className='text-gray-500 line-through'>${item.price}</p>
+                                  </div>
+                              </div>
+                          </Link>
+                      ))}
+                      </Slider>
+                  </div>
         </div>
       </Container>
     </div>
