@@ -1,0 +1,46 @@
+import { createSlice } from '@reduxjs/toolkit'
+
+const initialState = {
+  cartItem:[],
+}
+
+export const cartSlice = createSlice({
+  name: 'cart',
+  initialState,
+  reducers: {
+    addToCart: (state, action)=>{
+      const index = state.cartItem.findIndex((item)=> item.id == action.payload.id)
+      if (index != -1){
+        state.cartItem[index].qun++
+      }else{
+        state.cartItem = [...state.cartItem, action.payload]
+      }
+    },
+    removeCart: (state,action)=>{
+      const filtercart = state.cartItem.filter((item)=> item.id !== action.payload.id)
+      state.cartItem = filtercart
+    },
+    increment: (state, action) => {
+      let index = state.cartItem.findIndex((item)=> item.id === action.payload.id)
+      if(index !== -1){
+        state.cartItem[index].qun++
+      }
+    },
+    decrement: (state, action) => {
+      let index = state.cartItem.findIndex((item)=> item.id === action.payload.id)
+      if(index !== -1 && state.cartItem[index].qun > 1){
+        state.cartItem[index].qun--
+      }
+    },
+    incrementByAmount: (state, action) => {
+      let index = state.cartItem.findIndex((item)=> item.id === action.payload.id)
+      if(index !== -1){
+        state.cartItem[index].qun += action.payload.amount
+      }
+    },
+  },
+})
+
+export const { addToCart, removeCart, increment, decrement, incrementByAmount } = counterSlice.actions
+
+export default cartSlice.reducer
