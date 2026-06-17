@@ -2,8 +2,11 @@ import React from 'react'
 import Container from './Container'
 import { Link } from 'react-router-dom'
 import { IoIosSearch } from "react-icons/io";
+import { useSelector } from 'react-redux';
+import { FaCartShopping } from 'react-icons/fa6';
 
 const Navber = () => {
+  let Cart = useSelector((state)=> state.cart.cartItem)
   return (
     <div className='py-4 border-b border-[#76767638] sticky top-0 bg-white z-1000'>
       <Container className="flex items-center">
@@ -24,6 +27,10 @@ const Navber = () => {
           <div className="px-5 py-2 border text-white cursor-pointer bg-[#fb2e86] border-[#76767638] border-l-0">
             <IoIosSearch/>
           </div>
+        </div>
+        <div className="">
+          <FaCartShopping/>
+          {Cart.length}
         </div>
         </div>
       </Container>

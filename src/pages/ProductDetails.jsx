@@ -8,10 +8,17 @@ import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from 'react-icons/io'
 import Best from "../components/Best.jsx"
 import SliderImport from "react-slick";
 import {Data} from "../components/ApiData.jsx"
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../components/cart/cartSlice';
 
 
 const Slider = SliderImport.default;
 const ProductDetails = () => {
+  let dispatch = useDispatch()
+  let handleCart = (item)=>{
+    dispatch(addToCart({...item, qun:1}))
+  }
+
   let {info} = useContext(Data)
     let {id} = useParams()
     let [product, setProduct] = useState([])
@@ -78,7 +85,7 @@ const ProductDetails = () => {
               <p className='text-[#2f1ac4] uppercasetext-sm'>{product.brand}</p>
             </div>
             <div className="py-5">
-              <Link className='py-2.5 px-8 bg-[#2f1ac4] text-sm rounded-lg text-white'>Add To Cart</Link>
+              <div onClick={()=> handleCart(product)} className='py-2.5 px-8 bg-[#2f1ac4] text-sm rounded-lg text-white'>Add To Cart</div>
             </div>
           </div>
         </div>

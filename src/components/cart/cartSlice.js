@@ -9,11 +9,11 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action)=>{
-      const index = state.cartItem.findIndex((item)=> item.id == action.payload.id)
+      const index = state.cartItem.findIndex((item)=> item.id === action.payload.id)
       if (index != -1){
         state.cartItem[index].qun++
       }else{
-        state.cartItem = [...state.cartItem, action.payload]
+        state.cartItem = [...state.cartItem, {...action.payload , qun :1 }]
       }
     },
     removeCart: (state,action)=>{
@@ -41,6 +41,6 @@ export const cartSlice = createSlice({
   },
 })
 
-export const { addToCart, removeCart, increment, decrement, incrementByAmount } = counterSlice.actions
+export const { addToCart, removeCart, increment, decrement, incrementByAmount } = cartSlice.actions
 
 export default cartSlice.reducer
