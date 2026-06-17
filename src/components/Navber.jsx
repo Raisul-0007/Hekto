@@ -21,17 +21,21 @@ const Navber = () => {
           <li><Link className="cursor-pointer hover:text-[#fb2e86]" to="#">Contact</Link></li>
         </ul>
         </div>
-        <div className="w-1/4">
+        <div className="w-1/4 flex items-center justify-between">
         <div className="flex items-center">
           <input className="bg-white border py-1 border-[#76767638] px-2 focus:outline-none" type="text" placeholder="Search..."/>
           <div className="px-5 py-2 border text-white cursor-pointer bg-[#fb2e86] border-[#76767638] border-l-0">
             <IoIosSearch/>
           </div>
         </div>
-        <div className="">
-          <FaCartShopping/>
-          {Cart.length}
-        </div>
+        <Link to="/cart" className="relative">
+          <div className="text-[#fb2e86] text-lg">
+            <FaCartShopping/>
+          </div>
+          <div className={Cart.length > 0 ? "absolute top-[-20px] right-[-15px] h-5 w-5 flex justify-center items-center text-white text-[12px] bg-[#fb2e86] rounded-full" : "hidden" }>
+            {Cart.length}
+          </div>
+        </Link>
         </div>
       </Container>
     </div>

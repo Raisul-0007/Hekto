@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router/dom";
 import Shop from './pages/Shop';
 import Layout from './components/Layout';
 import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart';
 
 const App = () => {
   
@@ -23,6 +24,9 @@ const App = () => {
   },{
     path:"/shop/:id",
     element:<ProductDetails/>,
+  },{
+    path:"/cart",
+    element:<Cart/>
   }
 ]}
   ])

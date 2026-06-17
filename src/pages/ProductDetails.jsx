@@ -85,7 +85,7 @@ const ProductDetails = () => {
               <p className='text-[#2f1ac4] uppercasetext-sm'>{product.brand}</p>
             </div>
             <div className="py-5">
-              <div onClick={()=> handleCart(product)} className='py-2.5 px-8 bg-[#2f1ac4] text-sm rounded-lg text-white'>Add To Cart</div>
+              <div onClick={()=> handleCart(product)} className='py-2.5 px-8 bg-[#2f1ac4] text-sm rounded-lg text-white cursor-pointer'>Add To Cart</div>
             </div>
           </div>
         </div>
