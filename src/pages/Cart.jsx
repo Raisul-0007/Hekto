@@ -24,6 +24,12 @@ const Cart = () => {
    let handleDecrement = (item)=>{
     dispatch(decrement(item))
    }
+
+   let grandTotal= cartData.reduce((total, item)=>{
+    const discountPrice  = (item.price - (item.price * item.discountPercentage) / 100)
+
+    return total + discountPrice * item.qun 
+   },0)
   return (
     <div>
       <Container>
@@ -48,21 +54,27 @@ const Cart = () => {
             </div>
             {cartData.map((item)=>(
             <div className="flex ">
-              <div className="w-1/4 border border-r-0 border-[#5f3ed8] py-3 text-center flex items-center gap-3">
+              <div className="w-1/4 border border-r-0 border-t-0 border-[#5f3ed8] py-4 text-center flex items-center gap-3 px-3">
               <div onClick={()=>handleRemove(item)}className=" h-4 w-4 text-sm flex items-center justify-center cursor-pointer border">
                   <RxCross2 />
                     </div>
               <h3 className='font-bold text-xl'>{item.title.slice(0, 25)}</h3>
               </div>
-              <div className="w-1/4 border border-r-0 border-[#5f3ed8] py-3 text-center ">${item.discountPercentage ? (item.price -(item.price * item.discountPercentage) / 100).toFixed(2) : ''}</div>
-              <div className="w-1/4 border border-r-0 border-[#5f3ed8] py-3 text-center  flex items-center justify-center gap-2">
-                <button onClick={()=> handleDecrement(item)} className="border h-5 w-5 text-sm flex justify-center items-center"><FiMinus /></button>
+              <div className="w-1/4 border border-t-0 border-r-0 border-[#5f3ed8] py-4 text-center ">${item.discountPercentage ? (item.price -(item.price * item.discountPercentage) / 100).toFixed(2) : ''}</div>
+              <div className="w-1/4 border border-t-0 border-r-0 border-[#5f3ed8] py-4 text-center  flex items-center justify-center gap-2 ">
+                <button onClick={()=> handleDecrement(item)} className="border h-5 w-5 text-sm flex justify-center items-center cursor-pointer"><FiMinus /></button>
                 <div className="">{item.qun}</div>
-                <button onClick={()=> handleIncreament(item)} className="border h-5 w-5 text-sm flex justify-center items-center"><FiPlus/></button>
+                <button onClick={()=> handleIncreament(item)} className="border h-5 w-5 text-sm flex justify-center items-center cursor-pointer"><FiPlus/></button>
               </div>
-              <div className="w-1/4 border border-[#5f3ed8] py-3 text-center ">${item.discountPercentage ? ((item.price -(item.price * item.discountPercentage) / 100) * item.qun).toFixed(2) : ''} </div>
+              <div className="w-1/4 border border-t-0 border-[#5f3ed8] py-4 text-center ">${item.discountPercentage ? ((item.price -(item.price * item.discountPercentage) / 100) * item.qun).toFixed(2) : ''} </div>
             </div>
             ))}
+            <div className="w-60 border border-[#fb2e86] ms-auto my-5">
+              <div className="flex ">
+              <div className="w-1/2 border-r text-white text-center bg-[#fb2e86] py-2">GrandTotal :</div>
+              <div className="w-1/2 text-center py-2">{grandTotal.toFixed(2)}</div>
+            </div>
+            </div>
           </div>
         ):(
           <div className="py-30 ">
