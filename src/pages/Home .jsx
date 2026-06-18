@@ -10,6 +10,7 @@ import Best from '../components/Best';
 const Home  = () => {
   return (
     <div>
+       window.scrollTo(0, 0)
       <Banner/>
       <Featured/>
       <Leatest/>

@@ -14,6 +14,7 @@ import { addToCart } from '../components/cart/cartSlice';
 
 const Slider = SliderImport.default;
 const ProductDetails = () => {
+   window.scrollTo(0, 0)
   let dispatch = useDispatch()
   let handleCart = (item)=>{
     dispatch(addToCart({...item, qun:1}))

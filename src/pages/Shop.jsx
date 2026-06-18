@@ -6,6 +6,7 @@ import { Data } from '../components/ApiData';
 import { GoPlus } from "react-icons/go";
 
 const Shop = () => {
+    window.scrollTo(0, 0)
    let {info} = useContext(Data)
       let [cate, cateShow] = useState(false)
       let [brandShow, brandSetShow] = useState(false)
