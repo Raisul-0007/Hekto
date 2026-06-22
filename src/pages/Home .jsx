@@ -8,9 +8,10 @@ import Footer from './../components/Footer'
 import Navber from './../components/Navber';
 import Best from '../components/Best';
 const Home  = () => {
+         window.scrollTo(0, 0)
+
   return (
     <div>
-       window.scrollTo(0, 0)
       <Banner/>
       <Featured/>
       <Leatest/>
