@@ -9,12 +9,23 @@ import { HiMenu, HiX } from 'react-icons/hi';
 const Navber = () => {
   let Cart = useSelector((state)=> state.cart.cartItem)
   let [show, setShow] = useState(false)
+  let menuRef = useRef(null)
 
-
+  useEffect(()=>{
+    const handleClick = (e)=>{
+      if (menuRef.current && !menuRef.current.contains(e.target)){
+        setShow(false)
+      }
+    }
+    document.removeEventListener("mousedown", handleClick)
+    return ()=>{
+      document.removeEventListener("mousedown", handleClick)
+    }
+  }, [])
   return (
-    <div className='py-4 border-b border-[#76767638] sticky top-0 bg-white z-1000'>
+    <div ref={menuRef} className='py-4 border-b border-[#76767638] sticky top-0 bg-white z-1000'>
       <Container className=" flex items-center">
-        <div className="lg:w-1/4 w-2/3">
+        <div className="md:w-1/4 w-2/3">
           <Link to="/"><h1 className='text-2xl font-bold italic '>Hecto</h1></Link>
         </div>
         <div className="w-2/4 hidden md:block">
@@ -53,25 +64,25 @@ const Navber = () => {
            <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
       <ul className="flex flex-col p-4 gap-4">
         <li>
-          <Link to="/" onClick={() => setShowMenu(false)}>
+          <Link className='block w-full' to="/" onClick={() => setShow(false)}>
             Home
           </Link>
         </li>
 
         <li>
-          <Link to="/shop" onClick={() => setShowMenu(false)}>
+          <Link className='block w-full' to="/shop" onClick={() => setShow(false)}>
             Shop
           </Link>
         </li>
 
         <li>
-          <Link to="#" onClick={() => setShowMenu(false)}>
+          <Link  className='block w-full' to="#" onClick={() => setShow(false)}>
             About
           </Link>
         </li>
 
         <li>
-          <Link to="#" onClick={() => setShowMenu(false)}>
+          <Link className='block w-full' to="#" onClick={() => setShow(false)}>
             Contact
           </Link>
         </li>
